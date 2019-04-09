@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC');
+@import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono');
+
+html,body {
+	height: 100%;
+	overflow: hidden;
+}
+
+body.my-login-page {
+	background-color: #b0d9f4;
+	font-size: 14px;
+}
+
+.title{
+    text-align: center;
+	font-size: 4em;
+	font-family: 'Alegreya Sans SC', sans-serif;
+    margin: .5em auto 0em auto;
+    background-color: aliceblue;
+}
+
+#versi{
+    text-align: center;
+    margin: 0;
+	color: #e66767;
+	font-family: 'Alegreya Sans SC', sans-serif;
+    background-color: aliceblue;
+    font-weight: bold;
+
+}
+
+.h-100{
+	margin-top: 30px;
+}
+
+.my-login-page .card-wrapper {
+	width: 400px;
+}
+
+.my-login-page .card {
+	border-color: transparent;
+	box-shadow: 0 4px 8px rgba(0,0,0,.05);
+}
+
+.my-login-page .card.fat {
+	padding: 10px;
+	font-family: 'Share Tech Mono', monospace;
+
+}
+
+.my-login-page .card .card-title {
+	margin-bottom: 30px;
+}
+
+.my-login-page .form-control {
+	border-width: 2.3px;
+}
+
+.my-login-page .form-group label {
+	width: 100%;
+}
+
+.my-login-page .btn.btn-block {
+	padding: 12px 10px;
+}
+
+.my-login-page .footer {
+	margin: 40px 0;
+	color: #888;
+	text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+	.my-login-page .card-wrapper {
+		width: 90%;
+		margin: 0 auto;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.my-login-page .card.fat {
+		padding: 0;
+	}
+
+	.my-login-page .card.fat .card-body {
+		padding: 15px;
+	}
+}
