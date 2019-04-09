@@ -22,3 +22,20 @@
         </div>
     </div>
 @endsection
+
+@section('scripts')
+<script>
+
+    $('#nis').change(function (){
+        console.log(this);
+        
+        $.getJSON( "/api/siswas/"+$(this).val(), function( data ) {
+            $('#name').val(data.data.name);
+        });
+        
+    });
+
+</script>
+@endsection
+
+

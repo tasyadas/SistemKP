@@ -1,13 +1,13 @@
     <!-- Nis Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('nis', 'NIS:') !!}
-        {!! Form::select('nis', $data, null, ['class' => 'form-control']) !!}
+        {!! Form::select('nis', $nis, null, ['class' => 'form-control']) !!}
     </div>
 
     <!-- Name Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('name', 'Nama:') !!}
-        {!! Form::select('name', $data[0], null,['class' => 'form-control']) !!}
+        {!! Form::text('name', null,['class' => 'form-control', 'readonly'=>true]) !!}
     </div>
 
     <!-- Academic Year Field -->

@@ -57,8 +57,10 @@ class PKLController extends AppBaseController
      */
     public function create()
     {
+        $nis = Siswa::pluck('nis', 'id');
+
         return view('p_k_l_s.create')
-                ->with('data', $this->data);
+                ->with('nis', $nis);
                 // ->with('name', $this->name)
                 // ->with('jurusan', $this->jurusan)
                 // ->with('kelas', $this->kelas)
