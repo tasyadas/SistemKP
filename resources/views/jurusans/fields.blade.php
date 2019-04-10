@@ -1,13 +1,13 @@
 <!-- Name Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('name', 'Name:') !!}
-    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+    {!! Form::label('kode_jurusan', 'Name:') !!}
+    {!! Form::text('kode_jurusan', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Kode Jurusan Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('kode_jurusan', 'Kode Jurusan:') !!}
-    {!! Form::text('kode_jurusan', null, ['class' => 'form-control']) !!}
+    {!! Form::label('name', 'Kode Jurusan:') !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

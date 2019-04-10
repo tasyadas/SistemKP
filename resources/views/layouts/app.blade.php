@@ -25,7 +25,9 @@
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="{{ asset('css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/select2-mod.css')}}">
 
     @yield('css')

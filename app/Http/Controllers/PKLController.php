@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Models\Siswa;
-use App\Models\jurusan;
 use App\Models\Bengkel;
 
 class PKLController extends AppBaseController
@@ -21,12 +20,11 @@ class PKLController extends AppBaseController
     public function __construct(PKLRepository $pKLRepo)
     {
         $this->pKLRepository = $pKLRepo;
-        // $this->nis = Siswa::pluck('nis','id');
-        // $this->name = Siswa::pluck('name','id');
-        // $this->jurusan = jurusan::pluck('name','id');
-        // $this->kelas = Siswa::pluck('class','id');
-        // $this->company = Bengkel::pluck('name','id');
-        $this->data = Siswa::all();
+        $this->query = Bengkel::all();
+        $this->nis = Siswa::pluck('nis', 'id');
+        $this->bengkel = $this->query->filter(function ($b) {
+                 return $b->status == 1;
+            })->pluck('name', 'id');
 
         // $this->middleware('role:super_admin,admin');
     }
@@ -57,14 +55,10 @@ class PKLController extends AppBaseController
      */
     public function create()
     {
-        $nis = Siswa::pluck('nis', 'id');
 
         return view('p_k_l_s.create')
-                ->with('nis', $nis);
-                // ->with('name', $this->name)
-                // ->with('jurusan', $this->jurusan)
-                // ->with('kelas', $this->kelas)
-                // ->with('company', $this->company);
+                ->with('nis', $this->nis)
+                ->with('bengkel', $this->bengkel);
     }
 
     /**
@@ -77,6 +71,22 @@ class PKLController extends AppBaseController
     public function store(CreatePKLRequest $request)
     {
         $input = $request->all();
+
+        $this->validate($request,[
+            'nis' => 'unique:p_k_l_s',
+        ]);
+
+        $bengkel = Bengkel::findOrFail($request->company);
+        $bengkel->kuota -= $request->company;
+        $bengkel->update();
+        
+        $bengkel = Bengkel::findOrFail($request->company);
+        $bengkel->status = ($bengkel->kuota == 0) ? 0 : 1 ;
+        $bengkel->update();
+        
+        $siswa = Siswa::findOrFail($request->siswa_id);
+        $siswa->status = $request->siswa_id ? 1 : 0;
+        $siswa->update();
 
         $pKL = $this->pKLRepository->create($input);
 
@@ -169,7 +179,7 @@ class PKLController extends AppBaseController
             return redirect(route('pKLS.index'));
         }
 
-        $this->pKLRepository->delete($id);
+        $pKL->forceDelete();
 
         Flash::success('Internship data deleted successfully.');
 

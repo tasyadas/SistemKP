@@ -29,6 +29,7 @@ class Siswa extends Model
         'name',
         'class',
         'nis',
+        'angkatan',
         'status',
         'jurusan_id',
         'bengkel_id'
@@ -54,7 +55,7 @@ class Siswa extends Model
     public static $rules = [
         'name' => 'required',
         'class' => 'required',
-        'nis' => ['required', 'unique:siswas']
+        'nis' => 'required'
     ];
 
     public function jurusan()

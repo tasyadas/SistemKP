@@ -4,16 +4,28 @@
     {!! Form::text('name', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Nis Field -->
+<div class="form-group col-sm-12">
+    {!! Form::label('nis', 'NIS:') !!}
+    {!! Form::text('nis', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Class Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('class', 'Class:') !!}
     {!! Form::text('class', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Nis Field -->
+<!-- Angkatan Field -->
 <div class="form-group col-sm-12">
-    {!! Form::label('nis', 'NIS:') !!}
-    {!! Form::text('nis', null, ['class' => 'form-control']) !!}
+    {!! Form::label('angkatan', 'Angkatan:') !!}
+    {!! Form::text('angkatan', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Jurusan Field -->
+<div class="form-group col-sm-12">
+    {!! Form::label('jurusan_id', 'Jurusan:') !!}
+    {!! Form::select('jurusan_id', $jurusan, null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->

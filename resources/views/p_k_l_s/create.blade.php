@@ -31,6 +31,10 @@
         
         $.getJSON( "/api/siswas/"+$(this).val(), function( data ) {
             $('#name').val(data.data.name);
+            $('#angkatan').val(data.data.angkatan);
+            $('#jurusan').val(data.data.jurusan.name);
+            $('#class').val(data.data.class);
+            $('#siswa_id').val(data.data.id);
         });
         
     });

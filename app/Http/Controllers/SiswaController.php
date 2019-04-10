@@ -9,6 +9,8 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\jurusan;
+use App\Models\Bengkel;
 
 class SiswaController extends AppBaseController
 {
@@ -18,6 +20,7 @@ class SiswaController extends AppBaseController
     public function __construct(SiswaRepository $siswaRepo)
     {
         $this->siswaRepository = $siswaRepo;
+        $this->jurusan = jurusan::pluck('name', 'id');
         $this->middleware('role:super_admin,admin,siswa')->only('index', 'show');
         $this->middleware('role:super_admin,admin')->except('index', 'show');
     }
@@ -48,7 +51,8 @@ class SiswaController extends AppBaseController
      */
     public function create()
     {
-        return view('siswas.create');
+        return view('siswas.create')
+                ->with('jurusan', $this->jurusan);
     }
 
     /**
@@ -62,6 +66,9 @@ class SiswaController extends AppBaseController
     {
         $input = $request->all();
 
+        $this->validate($request,[
+            'nis' => 'unique:siswas',
+        ]);
         $siswa = $this->siswaRepository->create($input);
 
         Flash::success('Siswa saved successfully.');
@@ -106,7 +113,9 @@ class SiswaController extends AppBaseController
             return redirect(route('siswas.index'));
         }
 
-        return view('siswas.edit')->with('siswa', $siswa);
+        return view('siswas.edit')
+                ->with('siswa', $siswa)
+                ->with('jurusan', $this->jurusan);
     }
 
     /**
@@ -153,7 +162,7 @@ class SiswaController extends AppBaseController
             return redirect(route('siswas.index'));
         }
 
-        $this->siswaRepository->delete($id);
+        $siswa->forceDelete();
 
         Flash::success('Siswa deleted successfully.');
 

@@ -11,10 +11,11 @@ class PKLController extends Controller
     public function getSiswa($id)
     {
         $siswa = Siswa::find($id);
+        $jurusan = $siswa->jurusan->name;
 
         return response()->json([
             'success' => true,
-            'data' => $siswa
+            'data' => $siswa,$jurusan
         ], 200);
     }
 }

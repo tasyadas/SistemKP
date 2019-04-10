@@ -50,7 +50,7 @@ class Bengkel extends Model
     public static $rules = [
         'name' => 'required',
         'alamat' => 'required',
-        'kuota' => 'required'
+        'kuota' => ['required','min:0']
     ];
 
     

@@ -153,7 +153,7 @@ class BengkelController extends AppBaseController
             return redirect(route('bengkels.index'));
         }
 
-        $this->bengkelRepository->delete($id);
+        $bengkel->forceDelete();
 
         Flash::success('Bengkel deleted successfully.');
 
